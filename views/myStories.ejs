@@ -12,101 +12,94 @@
 
         <div class="col-md-12">
             <h2 class="text-center mt-4">Dashboard</h2>
-            <% if(stories.length>0){%>
+            <div class="table-responsive mt-5">
 
 
-                <div class="table-responsive mt-5">
+                <table id="mytable" class="table table-bordred table-striped">
 
-
-                    <table id="mytable" class="table table-bordred table-striped">
-
-                        <thead>
-                            <th>Tittle</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </thead>
-                        <tbody>
-                            <% stories.forEach(x=>{ %>
-                                <tr>
-                                    <td>
-                                        <a data-toggle="modal" data-target="#centralModalSm">
-                                            <%=x.tittle%>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <%=x.createdAt%>
-                                    </td>
-                                    <td>
-                                        <%=x.status%>
-                                    </td>
-                                    <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><a href="/stories/edit/<%=x._id %>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a></p>
-                                    </td>
-                                    <td>
-                                        <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><i class="fas fa-trash"></i></button></p>
-                                    </td>
-                                </tr>
-                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-
-                                            </div>
-                                            <div class="modal-footer ">
-                                                <a href="/stories/delete/<%=x._id %>" type="button" class="btn btn-success"> Yes</a>
-                                                <a type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"> No</a>
-                                            </div>
+                    <thead>
+                        <th>Tittle</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </thead>
+                    <tbody>
+                        <% stories.forEach(x=>{ %>
+                            <tr>
+                                <td>
+                                    <a data-toggle="modal" data-target="#centralModalSm">
+                                        <%=x.tittle%>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%=x.createdAt%>
+                                </td>
+                                <td>
+                                    <%=x.status%>
+                                </td>
+                                <td>
+                                    <p data-placement="top" data-toggle="tooltip" title="Edit"><a href="/stories/edit/<%=x._id %>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a></p>
+                                </td>
+                                <td>
+                                    <p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><i class="fas fa-trash"></i></button></p>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                            <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
                                         </div>
-                                        <!-- /.modal-content -->
+                                        <div class="modal-body">
+
+                                            <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+
+                                        </div>
+                                        <div class="modal-footer ">
+                                            <a href="/stories/delete/<%=x._id %>" type="button" class="btn btn-success"> Yes</a>
+                                            <a type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"> No</a>
+                                        </div>
                                     </div>
-                                    <!-- /.modal-dialog -->
+                                    <!-- /.modal-content -->
                                 </div>
-                                <!-- Central Modal Small -->
-                                <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- Central Modal Small -->
+                            <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-                                    <!-- Change class .modal-sm to change the size of the modal -->
-                                    <div class="modal-dialog modal-lg" role="document">
+                                <!-- Change class .modal-sm to change the size of the modal -->
+                                <div class="modal-dialog modal-lg" role="document">
 
 
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title w-100" id="myModalLabel">
-                                                    <%- x.tittle%>
-                                                </h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title w-100" id="myModalLabel">
+                                                <%- x.tittle%>
+                                            </h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <%- x.body%>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <%- x.body%>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
-                                <% }) %>
+                            </div>
+                            <% }) %>
 
-                        </tbody>
+                    </tbody>
 
-                    </table>
+                </table>
 
-                    <div class="clearfix"></div>
+                <div class="clearfix"></div>
 
-                </div>
-                <% } %>
-                    <%else{%>
-                        <p>No Stories Created Yet ...</p>
-                        <%}%>
+            </div>
 
         </div>
     </div>
