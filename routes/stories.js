@@ -19,17 +19,26 @@ router.get("/", checkAuthentication, async(req, res) => {
         currentuser: req.user,
         image: req.user.user_img,
         name: req.user.displayName,
-        stories: publicStories
+        stories: publicStories,
     })
 })
 router.get("/mine", checkAuthentication, async(req, res) => {
     const storiesall = await stories.find({ user: req.user.id });
-    res.render("myStories", {
-        layout: "dashboard",
-        image: req.user.user_img,
-        name: req.user.displayName,
-        stories: storiesall
-    })
+    if (storiesall.length > 0) {
+        res.render("myStories", {
+            layout: "dashboard",
+            image: req.user.user_img,
+            name: req.user.displayName,
+            stories: storiesall
+        })
+    } else {
+        res.render("nostories", {
+            layout: "dashboard",
+            image: req.user.user_img,
+            name: req.user.displayName,
+        })
+    }
+
 })
 router.get("/edit/:id", checkAuthentication, async(req, res) => {
     const errs = [];
@@ -64,6 +73,20 @@ router.post("/edit/:id", checkAuthentication, async(req, res) => {
         req.body.user = req.user.id;
         const story = await stories.findByIdAndUpdate(req.params.id, req.body);
         res.redirect("/stories/mine");
+    } catch (err) {
+        console.error(err)
+    }
+
+})
+router.get("/:id", async(req, res) => {
+    try {
+        const story = await stories.findById(req.params.id);
+        res.render("eachStory", {
+            layout: "dashboard",
+            image: req.user.user_img,
+            name: req.user.displayName,
+            story: story
+        })
     } catch (err) {
         console.error(err)
     }

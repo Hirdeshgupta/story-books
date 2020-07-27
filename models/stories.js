@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require('moment');
 const storySchema = new mongoose.Schema({
     tittle: {
         type: String,
@@ -20,8 +21,8 @@ const storySchema = new mongoose.Schema({
         required: true,
     },
     createdAt: {
-        type: Date,
-        default: Date.now()
+        type: String,
+        default: moment(Date.now()).format('MMMM Do YYYY, h:mm:ss a')
     }
 });
 module.exports = mongoose.model("Story", storySchema);
