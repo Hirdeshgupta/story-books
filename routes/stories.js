@@ -78,7 +78,7 @@ router.post("/edit/:id", checkAuthentication, async(req, res) => {
     }
 
 })
-router.get("/:id", async(req, res) => {
+router.get("/:id", checkAuthentication, async(req, res) => {
     try {
         const story = await stories.findById(req.params.id);
         res.render("eachStory", {
