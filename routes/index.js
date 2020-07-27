@@ -36,8 +36,6 @@ router.post("/register", async(req, res) => {
             errs.push("Email is already registered ");
             return res.render("register", {
                 errs: errs
-            }, () => {
-                container.classList.add('right-panel-active');
             });
         } else {
             if (password.length < 6) {
